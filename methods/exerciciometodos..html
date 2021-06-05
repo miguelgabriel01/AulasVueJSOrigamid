@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Methods exercicio</title>
+</head>
+<body>
+<div id="app">
+   <h1>{{titulo}}</h1>
+   <p>Ações da apple</p>
+   <button @click="puxaracoes()">Buscar ações diarias</button>
+   <br><br><br><br>
+   <small>latestTimes {{acoes.latestTime}}</small><br>
+   <small>latestPrice {{acoes.latestPrice}}</small><br>
+   <small>companyName {{acoes.companyName}}</small>
+</div>
+
+    <script>
+        const vm =  new Vue({
+            el:'#app',
+            data(){
+                return{
+                   titulo:'Methods exercicio || Vue.js Completo',
+                acoes:[],
+                }
+            },
+            methods: {
+                puxaracoes(){
+                 fetch('https://api.origamid.dev/stock/aapl/quote')
+                 .then(response => response.json())
+                 .then(json => {
+                     this.acoes = json
+                 })
+              }
+            },
+        })
+
+    </script>
+</body>
+</html>
