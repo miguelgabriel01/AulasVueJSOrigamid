@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Instancias</title>
+</head>
+<body>
+<div id="app">
+   <h1>{{titulo}}</h1>
+</div>
+
+<div id="app1">
+    <p>instancia 2</p>
+    <h1>{{ferramenta}}</h1>
+ </div>
+
+ <div id="app2">
+     <p>instancia 3</p>
+    <h1>{{instrumento}}</h1>
+ </div>
+ 
+
+
+    <script>
+        const vm =  new Vue({
+            el:'#app',
+            data(){
+                return{
+                   titulo:'Instancias || Vue.js Completo',
+
+                }
+            }
+        })
+
+        const vm1 = new Vue({
+            el:'#app1',
+            data:{
+               ferramenta:'martelo',
+            }
+        })
+
+        const vm2 = new Vue({
+            el:'#app2',
+            data:{
+               instrumento:'violao',
+            }
+        })
+
+
+    </script>
+</body>
+</html>
