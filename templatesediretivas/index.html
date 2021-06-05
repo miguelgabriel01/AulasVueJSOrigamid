@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Templates e diretivas</title>
+</head>
+<body>
+<div id="app">
+   <h1>Templates e diretivas</h1>
+   <hr>
+   <h2>{{titulo}}</h2>
+   <p>{{conteudo}}</p>
+   <hr>
+   <h1>Exemplo de uso de diretivas</h1>
+   <p>{{lado * lado / 100}}</p>
+
+   <p>{{comprou ? 'sim, ele comprou' : 'não, ele não comprou,. compre aqui'}}</p>
+      <a :href="href">link para comprar</a>
+
+</div>
+
+    <script>
+        const vm =  new Vue({
+            el:'#app',
+            data(){
+                return{
+                   titulo:'Vue.js Completo',
+                   conteudo:'Este é o curso de Vue.js',
+                   lado:5,
+                   comprou: false,
+                   href:'https://www.google.com'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
