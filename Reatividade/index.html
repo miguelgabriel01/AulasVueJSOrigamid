@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Reatividade</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Aula vue js sobre Reatividade</h1>
+        <hr>
+        <h2>Carrinho de compras</h2>
+        <p>Bermudas - R$ <span>{{preco}}</span></p>
+        <button @click="total++">Adcionar</button><br>
+        <button  @click="total--">Remover</button><br>
+        <span>Total de produtos adcionados: {{total}}</span>
+        <p>Total a pagar: <span>{{preco * total}}</span></p>       
+    </div>
+
+ <script>
+     const vm = new Vue({
+         el:'#app',
+         data(){
+             return{
+              preco:70,
+              total:0,
+
+             }
+         }
+     })
+ </script>
+</body>
+</html>
