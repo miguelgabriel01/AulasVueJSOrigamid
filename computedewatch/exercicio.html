@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>computed e watch</title>
+</head>
+<body>
+<div id="app">
+   <h1>{{titulo}}</h1>
+   <h6>nome completo</h6>
+   <small>{{nomecompleto}}</small>
+
+
+   <h1>paises</h1>
+
+   <button @click="puxarPaises()">Buscar paises</button>
+   <section>
+       <select name="paises" id="paises" v-model="selecionado">
+           <option v-for="pais in paises" :value="pais.name">{{pais.name}}</option>
+       </select>
+   </section>
+   <p>Capital <strong>{{capital.capital}}</strong></p>
+</div>
+<!--
+  Você possui o nome e sobrenome do usuário em data,
+  crie uma propriedade computed que retorne o nome completo
+  
+  Utilize a rest API para puxar as capitais dos paises
+  Use um campo de select, onde o usuário pode selecionar o país.
+  https://restcountries.eu/rest/v2/all
+
+  Com uma função watch, mude a capital de acordo com o país selecionado:
+
+  Ex de campo select:
+
+  <select name="paises" id="paises" v-model="selecionado">
+    <option v-for="pais in paises" :value="pais.name">
+      {{pais.name}}
+    </option>
+  </select>
+-->
+<script>
+const vm = new Vue({
+  el: "#app",
+  data: {
+    titulo:'Exercicio watch e computed / index cep || Vue.js Completo',
+    nome:'miguel',
+    sobrenome:'gabriel',
+
+    //segundo exercicio
+    paises:{},
+    selecionado:'',
+    capital:'',
+  },
+  methods:{
+      nomecompleto(){
+          return this.nome + " " + this.sobrenome
+      },
+      puxarPaises(){
+          alert("paises")
+         fetch("https://restcountries.eu/rest/v2/all")
+         .then(resposta => resposta.json())
+         .then( resposta => {
+             this.paises = resposta
+         });
+      }
+  },
+  watch: {
+
+      selecionado(){
+        this.capital = this.paises.find((pais) => pais.name == this.selecionado) 
+      }
+  }
+});
+
+</script>
+</body>
+</html>
