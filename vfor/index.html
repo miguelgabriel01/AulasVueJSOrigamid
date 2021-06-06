@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>V-for</title>
+</head>
+<body>
+<div id="app">
+   <h1>{{titulo}}</h1>
+   <h2>Array</h2>
+   <div>
+       <ul>
+           <li v-for="(item,index) in lista">{{item}}</li>
+       </ul>
+   </div>
+   <h2>Objetos</h2>
+   <div>
+       <ul>
+           <small>com as chaves do obj</small>
+        <li v-for="estado,chave in estados">{{chave}}</li><br>
+        <small>todo o obj</small>
+        <li v-for="estado,chave in estados">{{estado}}</li><br>
+        <small>o index do obj</small>
+        <li v-for="(value,key,index) in estados">{{index}}</li><br>
+        <small>usando :key</small>
+        <div id="app">
+            <div v-for="fruta in frutas" :key="fruta.id">
+              <p>{{fruta.nome}}</p>
+              <p>{{fruta.cor}}</p>
+            </div>
+          </div>
+  
+<h2>usando reatividade</h2>
+<div id="app">
+    <ul>
+      <li v-for="item in lista">{{item}}</li>
+    </ul>
+    <button @click="removerItem">Remover</button>
+    <button @click="mudarItem">Mudar</button>
+  </div>
+
+   </div>
+</div>
+    <script>
+        const vm =  new Vue({
+            el:'#app',
+            data(){
+                return{
+                   titulo:'V-for || Vue.js Completo',
+                   lista:['banana','Maçã','Laranja'],
+                   estados: {
+      sp: {
+        populacao: "45 milhões",
+        nome: "São Paulo"
+      },
+      mg: {
+        populacao: "21 milhões",
+        nome: "Minas Gerais"
+      },
+      rj: {
+        populacao: "17 milhões",
+        nome: "Rio de Janeiro"
+      }
+    },
+    frutas: [
+      {
+        id: "banana-1",
+        nome: "Banana",
+        cor: "Amarela"
+      },
+      {
+        id: "melancia-1",
+        nome: "Melancia",
+        cor: "Verde"
+      }
+    ],
+    lista: ["Item 1", "Item 2", "Item 3"]
+  
+                }
+            },
+            methods:{
+                removerItem() {
+      this.lista.pop(); // Ativa reatividade
+    },
+    mudarItem() {
+      //this.lista[0] = "Banana"; // Não ativa reatividade
+      this.$set(this.lista,0,'Banana') // ativa a reatividade
+    }
+            }
+        })
+
+    </script>
+</body>
+</html>
