@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>V-for</title>
+</head>
+<body>
+<div id="app">
+   <h1>{{titulo}}</h1>
+   <h2>Listar cursos</h2>
+   <button @click="puxarAula()">Puxar cursos</button>
+   <h5>cursos disponiveis</h5>
+    <div v-for="curso in cursos">
+        <h1>{{curso.curso}}</h1>
+        <ul>
+            <li v-for="aula in curso.aulas">{{aula.nome}} - {{aula.tempo}}</li>
+        </ul>
+    </div>
+   <!--
+  Utilizando a api:
+  https://viacep.com.br/ws/04538133/json/
+  Mostre o cep, logradouro, complemento, bairro, localidade e uf do que for retornado.
+
+  
+  Use o arquivo json da aula, para listar os cursos e as matérias.
+-->
+</div>
+<script>
+     const vm =  new Vue({
+        el:'#app',
+        data(){
+            return{
+               titulo:'V-for exercicio || Vue.js Completo',
+               cursos:{}
+            }
+        },
+        methods:{
+         puxarAula(){
+           fetch('./cursos.json')
+           .then(resposta => resposta.json())
+           .then(resposta => {
+             this.cursos = resposta
+           })  
+         }
+        }
+    })
+
+</script>
+</body>
+</html>
