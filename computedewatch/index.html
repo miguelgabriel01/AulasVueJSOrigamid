@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>V-for</title>
+</head>
+<body>
+<div id="app">
+   <h1>{{titulo}}</h1>
+   <h4>desconto</h4>
+   <p>{{total}}</p>
+
+   <h1>computed ex carros azuis</h1>
+   <p v-for="carro in carrosAzuis">{{carro.marca}}</p>
+   <button @click="removerCarro">Remover Carro</button>
+   <h1>ex de watch</h1>
+   <p>{{contador}}</p>
+   <button @click="contador++">add</button>
+
+   <h1>watch assicrono</h1>
+   <input type="text" v-model="cep" placeholder="Cep" maxlength="8" />
+   <ul>
+     <li v-for="(valor, chave) in endereco">{{chave}}: {{valor}}</li>
+   </ul>
+ 
+</div>
+<script>
+     const vm =  new Vue({
+        el:'#app',
+        data(){
+            return{
+               titulo:'Computed e watch || Vue.js Completo',
+               preco:59,
+               desconto:10,
+               contador:0,
+               cep: "",
+            endereco: {},
+               carros: [
+      {
+        marca: "VW",
+        cor: "Azul"
+      },
+      {
+        marca: "Ford",
+        cor: "Preto"
+      },
+      {
+        marca: "Tesla",
+        cor: "Azul"
+      }
+    ]
+            }
+        },
+        computed:{
+         total(){
+             return this.preco - this.desconto
+         },
+         carrosAzuis() {
+      return this.carros.filter(({ cor }) => cor === "Azul");
+    }
+        },
+        methods:{
+            removerCarro(){
+               return this.carros.pop()
+            }
+        },
+        watch:{
+          contador(){
+              alert("Contador foi alterado: " + this.contador)
+          }
+        }
+    })
+
+</script>
+</body>
+</html>

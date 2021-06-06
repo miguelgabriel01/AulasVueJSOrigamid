@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>V-for</title>
+</head>
+<body>
+<div id="app">
+   <h1>{{titulo}}</h1>
+   <input type="text" v-model="cep" placeholder="Cep" maxlength="8" />
+   <ul>
+     <li v-for="(valor, chave) in endereco">{{chave}}: {{valor}}</li>
+   </ul>
+ 
+</div>
+<script>
+const vm = new Vue({
+  el: "#app",
+  data: {
+    cep: "",
+    endereco: {},
+    titulo:'Buscar cep com watch || Vue.js Completo',
+
+  },
+  watch: {
+    cep(valor) {
+      if (valor.length === 8) {
+        fetch(`https://viacep.com.br/ws/${valor}/json/`)
+          .then(r => r.json())
+          .then(r => {
+            this.endereco = r;
+          });
+      }
+    }
+  }
+});
+
+</script>
+</body>
+</html>
