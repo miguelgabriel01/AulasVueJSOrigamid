@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>V-model</title>
+</head>
+<body>
+<div id="app">
+   <h1>{{titulo}}</h1>
+   <h1>V-model</h1>
+   <input v-model="nome" />
+   <textarea v-model="mensagem"></textarea>
+   <p>{{nome}}</p>
+   <p>{{mensagem}}</p>
+
+
+   <h1>two-way vs one-way</h1>
+   <input v-model="texto" />
+   <input :value="texto" />
+   <p>{{texto}}</p>
+
+   <h1>checkbox</h1>
+   <input type="checkbox" v-model="receberEmail" id="receberEmail" />
+   <label for="receberEmail">Receber Email</label><br />
+   <input type="checkbox" v-model="termos" id="termos" />
+   <label for="termos">Termos e Condições</label>
+ 
+   <p>receberEmail: {{receberEmail}}</p>
+   <p>termos: {{termos}}</p>
+
+   <h1>radios</h1>
+   <input type="radio" v-model="cor" value="Azul" id="azul" />
+   <label for="azul">Azul</label><br />
+   <input type="radio" v-model="cor" value="Vermelho" id="vermelho" />
+   <label for="vermelho">Vermelho</label>
+ 
+   <p>cor: {{cor}}</p>
+
+   <h1>select</h1>
+   <select v-model="fruta">
+    <option disabled value="">Selecione uma fruta</option>
+    <option value="banana">Banana</option>
+    <option value="morango">Morango</option>
+    <option value="uva">Uva</option>
+  </select>
+
+  <p>fruta: {{fruta}}</p>
+
+  <h1>modifiers(modificadores)</h1>
+  <textarea v-model.lazy="mensagem"></textarea>
+  <input v-model.number="total" />
+  <input v-model.trim="email" />
+  <p>apenas quando sair do form o texto será reativo: {{mensagem}}</p>
+  <p>o valor sempre sai como numero: {{total}}</p>
+  <p>retira os espacos entre a palavra: {{email}}</p>
+<script>
+const vm = new Vue({
+  el: "#app",
+  data: {
+    titulo:'V-model || Vue.js Completo',
+    nome: "",
+    mensagem: "",
+    texto: "",
+    receberEmail: true,
+    termos: false,
+    cor: "",
+    fruta: "",
+    mensagem: "",
+    total: 0,
+    email: ""
+  },
+  methods:{
+
+  },
+});
+
+</script>
+</body>
+</html>
