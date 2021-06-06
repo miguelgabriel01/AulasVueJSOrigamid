@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>v-model</title>
+</head>
+<body>
+<div id="app">
+   <h1>{{titulo}}</h1>
+   <!-- 
+  1 - Crie um criador de botões.
+
+  O usuário poderá definir:
+  width,
+  height,
+  font-size,
+  font-family,
+  text-align,
+  background,
+  color,
+  border-radius,
+
+  As escolhas serão feitas em campos de
+  formulário. Cada escolha deverá ser 
+  refletida em um elemento (o botão).
+
+
+  2 - Crie um formulário com, nome, email, telefone e mensagem.
+  Ao clicar em enviar, as informações preenchidas no formulário
+  devem aparecer abaixo do mesmo. (previna o comportamento padrão do botão enviar)
+ -->
+
+ <input type="color" v-model="btn.background"><br>
+ <label for="">width</label><br>
+ <input type="text" v-model="btn.width" placeholder="width"><br></bt>
+ <label for="height">height</label><br>
+ <input type="text" v-model="btn.height"><br>
+ <div :style="btn">Clique aqui</div>
+
+ <h1>exercicio 2</h1>
+ 
+<script>
+const vm = new Vue({
+  el: "#app",
+  data: {
+    titulo:'Exercicio v-model || Vue.js Completo',
+    btn:{
+        background:'',
+        width:'0px',
+        height:'0px'
+    }
+  },
+  methods:{
+
+  },
+});
+
+</script>
+</body>
+</html>
