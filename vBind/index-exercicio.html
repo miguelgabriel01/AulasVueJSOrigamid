@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>v-bind exercicio</title>
+    <style>
+        .verde{
+            color:green;
+        }
+        .vermelho{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+   <h1>{{titulo}}</h1>
+
+   <h2>{{google.companyName}}</h2>
+   <p :class="google.marketCap > apple.marketCap ? 'verde' : 'vermelho'">{{google.marketCap}}</p>
+   <hr>
+   <h2>{{apple.companyName}}</h2>
+   <p  :class="apple.marketCap > google.marketCap ? 'verde' : 'vermelho'">{{apple.marketCap}}</p>
+   <hr>
+   <button @click="puxarDados()">Comparar empresas</button>
+</div>
+
+<!--
+  Utilizando as API's
+  https://api.origamid.dev/stock/aapl/quote
+  https://api.origamid.dev/stock/googl/quote
+
+  - Compare o marketCap (valor de
+  mercado) entre ambas.
+
+  - Mostre o nome das empresas e o valor
+  na interace (companyName e marketCap).
+
+  - Mude a cor para verde o nome da empresa com
+  maior marketCap e vermelho a com menor.
+-->
+
+    <script>
+        const vm =  new Vue({
+            el:'#app',
+            data(){
+                return{
+                   titulo:'V-bind Exercicio || Vue.js Completo',
+                   google:[],//empresa que será comparada
+                   apple:[],//empresa que vai ser comparada
+                }
+            },
+            methods:{
+                fetchGoogle(){
+                    fetch('https://api.origamid.dev/stock/googl/quote')
+                    .then(resposta => resposta.json())
+                    .then(resposta => {
+                        this.google = resposta
+                    })
+                },
+                fetchApple(){
+                    fetch('https://api.origamid.dev/stock/aapl/quote')
+                    .then(resposta => resposta.json())
+                    .then(resposta => {
+                        this.apple = resposta
+                    })
+                },
+                puxarDados(){
+                    this.fetchApple()
+                    this.fetchGoogle()
+                }
+            }
+
+        })
+
+    </script>
+</body>
+</html>
