@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>Basico components 01</title>
+</head>
+<body>
+    <div id="app">
+      {{title}}
+      <botao-contador></botao-contador>
+      <component-global></component-global>
+    </div>
+    <script>
+  //componente local    
+  Vue.component("BotaoContador",{
+    data(){
+      return{
+       total:0
+      }
+    },
+    template:`<button @click="total++">Contador: {{total}}</button>`,
+    methods: {
+      clicou(){
+        alert("clicou no botão")
+      }
+    },
+  })
+
+  //componente global
+  Vue.component("ComponentGlobal",{
+    template:`<p>isso é Global</p>`
+  })
+        const vm =  new Vue({
+            el:'#app',
+            //components:{ComponentGlobal},//se eu registro ele se torna local
+            data(){
+                return{
+                    title: 'Basico components 01 || vue js'
+                }
+            }
+        })
+    
+    </script>
+</body>
+</html>
