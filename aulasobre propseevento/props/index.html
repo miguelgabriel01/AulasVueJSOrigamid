@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>props</title>
+</head>
+<body>
+  <div id="app">
+    {{titulo}}
+    <lista-produtos :produtos="listaItens"></lista-produtos>
+  </div>
+    <script type="module">
+const ListaProdutos = {
+  name: 'ListaProdutos',
+  props: ['produtos'],
+  template: `
+    <ul>
+      <li v-for="produto in produtos">{{produto}}</li>
+    </ul>
+  `,
+};
+
+const vm = new Vue({
+  el: '#app',
+  data: {
+    listaItens: ['Item 1', 'Item 2'],
+    titulo:'props vue js exemplo 1.0 de componente pai para componente filho'
+  },
+  components: {
+    ListaProdutos,
+  },
+});
+    </script>
+</body>
+</html>
