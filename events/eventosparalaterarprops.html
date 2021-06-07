@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>events</title>
+</head>
+<body>
+    <div id="app">
+      {{title}}<br><br>
+     contador:  {{contador}}
+      <meu-botao :contador="contador" @update:contador="contador = $event"></meu-botao>
+
+      <h1>eventos para atualizar props</h1>
+      
+    </div>
+    <script>
+    const MeuBotao = {
+        name:'MeuBotao',
+        props:["contador"],
+        data(){
+             return{
+                 contadorComponente: this.contador
+             }
+         },
+        template:`<button @click="incrementar">Total: {{contadorComponente}}</button>
+         `,
+         methods: {
+           incrementar(){
+             this.contadorComponente++
+             this.$emit("update:contador",this.contadorComponente)
+           }
+         },
+    }
+        const vm =  new Vue({
+            el:'#app',
+            components:{MeuBotao},
+            data(){
+                return{
+                    title: 'events para alterar props vue js',
+                    mensagem:'',
+                    contador:22
+                }
+            },
+            methods: {
+            },
+        })
+    
+    </script>
+</body>
+</html>

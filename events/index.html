@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- versão de produção, otimizada para tamanho e velocidade -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <title>events</title>
+</head>
+<body>
+    <div id="app">
+      {{title}}
+      <meu-botao @origamid="mostrarMsg"></meu-botao>
+      {{mensagem}}
+      <p>Total cliente: {{totalClientes}}</p>
+
+      <h1>eventos para atualizar props</h1>
+      
+    </div>
+    <script>
+    const MeuBotao = {
+        name:'MeuBotao',
+        data(){
+             return{
+                 totalClientes: 200,
+             }
+         },
+        template:`<button @click="handleClick">Clique</button>
+         `,
+ 
+         methods: {
+             handleClick(){
+               alert("apertou")
+               this.$emit("origamid",this.totalClientes)
+             }
+         },
+    }
+        const vm =  new Vue({
+            el:'#app',
+            components:{MeuBotao},
+            data(){
+                return{
+                    title: 'events vue js',
+                    mensagem:'',
+                    totalClientes:0
+                }
+            },
+            methods: {
+                mostrarMsg(qualquernome){
+                    alert("mensagem: " + qualquernome)
+                    this.totalClientes = 100*100/2
+                    alert("Entrou em mostrar msg, origamid ocorreu")
+                    this.mensagem = "o evento foi emitifo com sucesso"
+                }
+            },
+        })
+    
+    </script>
+</body>
+</html>
