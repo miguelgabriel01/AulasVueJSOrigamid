@@ -9,5 +9,17 @@ export default new Vuex.Store({
   state:{
     user:'Miguel Gabriel B. Dos Santos',
     aulasCompletas:10,
+  },
+  mutations:{
+/*     changerUser(state){
+      state.user = "Gabriel Santos"
+    }, */
+    CHANGER_USER(state,payload){
+      state.user = payload.user
+
+    },
+    COMPLETAR_AULAS(state){
+      state.aulasCompletas++
+    }
   }
 })
